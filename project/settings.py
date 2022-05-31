@@ -22,6 +22,7 @@ env = environ.Env(
     ALLOW_ALL_ORIGINS=(bool, True),
     ALLOWED_HOSTS=(list, []),
     ALLOWED_ORIGINS=(list, []),
+    CSRF_TRUSTED_ORIGINS = (list, []),
     DATABASE_ENGINE=(str, "django.db.backends.sqlite3"),
     DATABASE_NAME=(str, BASE_DIR / "db.sqlite3"),
     DATABASE_USER=(str, ""),
@@ -33,6 +34,8 @@ env = environ.Env(
 environ.Env.read_env()
 
 ENVIRONMENT = env.str("ENVIRONMENT")
+
+CSRF_TRUSTED_ORIGINS = tuple(env.list("CSRF_TRUSTED_ORIGINS"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -168,4 +171,4 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_WHITELIST = tuple(env.list("ALLOWED_ORIGINS"))
 CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
-CSRF_TRUSTED_ORIGINS = ['https://cookie-standss.herokuapp.com']
+# CSRF_TRUSTED_ORIGINS = ['https://cookie-standss.herokuapp.com']
